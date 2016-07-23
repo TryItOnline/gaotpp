@@ -22,3 +22,6 @@ Gaot++ have 2 types of commands: `baa` and `bleet`
 |13|Duplicate the top of the stack|
 |14|Swap the two items on the top of the stack|
 |15|Reverse the stack|
+|16|Rotate the stack|
+
+[Esolang page](https://esolangs.org/wiki/Gaot%2B%2B)

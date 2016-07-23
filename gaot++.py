@@ -45,6 +45,8 @@ def gaot(s):
                 stack.append(stack.pop(-2))
             elif n == 15:
                 stack.reverse()
+            elif n == 16:
+                stack.append(stack.pop(0))
         i += d
 
 import sys
