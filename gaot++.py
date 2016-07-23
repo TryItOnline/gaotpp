@@ -42,7 +42,9 @@ def gaot(s):
             elif n == 11:
                 stack.append(int(input()))
             elif n == 12:
-                stack.append(ord(getch()))
+                _ = ord(getch())
+                if _ == 4: _ = 0
+                stack.append(_)
             elif n == 13:
                 stack.append(stack[-1])
             elif n == 14:
