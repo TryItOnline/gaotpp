@@ -15,7 +15,7 @@ def gaot(s):
         elif BLEET.search(c):
             n = len(c) - 3
             if n == 2:
-                stack.append(stack.pop(-2) + stack.pop())
+                stack.append(stack.pop() + stack.pop())
             elif n == 3:
                 stack.append(stack.pop(-2) - stack.pop())
             elif n == 4:
