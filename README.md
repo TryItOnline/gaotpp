@@ -2,7 +2,7 @@
 
 Gaot++ have 2 types of commands: `baa` and `bleet`
 
-`baa`s commands push it's count of a - 1 to the stack.
+`baa`s commands push it's count of `a` - 1 to the stack.
 
 `bleet`s commands table:
 
@@ -19,3 +19,6 @@ Gaot++ have 2 types of commands: `baa` and `bleet`
 |10|Pop a value and print it as a character|
 |11|Read a number from stdin|
 |12|Read a character from stdin|
+|13|Duplicate the top of the stack|
+|14|Swap the two items on the top of the stack|
+|15|Reverse the stack|

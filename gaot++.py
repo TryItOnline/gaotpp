@@ -1,4 +1,5 @@
 import re
+from getch import getch # From https://gist.github.com/chao787/2652257
 
 BAA = re.compile(r"ba{2,}")
 BLEET = re.compile(r"ble{2,}t")
@@ -37,7 +38,13 @@ def gaot(s):
             elif n == 11:
                 stack.append(int(input()))
             elif n == 12:
-                stack.append(ord(input()))
+                stack.append(ord(getch()))
+            elif n == 13:
+                stack.append(stack[-1])
+            elif n == 14:
+                stack.append(stack.pop(-2))
+            elif n == 15:
+                stack.reverse()
         i += d
 
 import sys
