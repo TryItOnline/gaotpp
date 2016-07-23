@@ -1,4 +1,5 @@
 import re
+import sys
 from getch import getch # From https://gist.github.com/chao787/2652257
 
 BAA = re.compile(r"ba{2,}")
@@ -18,7 +19,8 @@ def gaot(s):
             if n == 2:
                 stack.append(stack.pop() + stack.pop())
             elif n == 3:
-                stack.append(stack.pop(-2) - stack.pop())
+                _ = stack.pop()
+                stack.append(stack.pop() - _)
             elif n == 4:
                 i += d
             elif n == 5:
@@ -33,8 +35,10 @@ def gaot(s):
                     i += d
             elif n == 9:
                 print(stack.pop())
+                sys.stdout.flush()
             elif n == 10:
-                print(chr(stack.pop()), end="")
+                sys.stdout.write(chr(stack.pop()))
+                sys.stdout.flush()
             elif n == 11:
                 stack.append(int(input()))
             elif n == 12:
@@ -49,7 +53,6 @@ def gaot(s):
                 stack.append(stack.pop(0))
         i += d
 
-import sys
 with open(sys.argv[1]) as f:
     g = f.read()
 gaot(g)
