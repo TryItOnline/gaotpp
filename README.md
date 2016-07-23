@@ -5,7 +5,9 @@ Gaot++ have 2 types of commands: `baa` and `bleet`
 `baa`s commands push it's count of a - 1 to the stack.
 
 `bleet`s commands table:
+
 |Count of `e`|Description|
+|:-:|:-:|
 |2|Pop two numbers and push the sum|
 |3|Pop a, pop b and push b - a|
 |4|Skip the next command|
