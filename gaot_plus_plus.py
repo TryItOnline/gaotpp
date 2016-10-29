@@ -1,9 +1,14 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 
 import re
 import sys
 from getch import getch # From https://gist.github.com/chao787/2652257
 from stack import Stack
+
+try:
+    raw_input
+except NameError:
+    raw_input = input
 
 
 class Gaot(object):
@@ -123,7 +128,9 @@ class Gaot(object):
 	def _rotate_stack(self):
 		_ = self.stack.get()
 		self.stack = Stack(x[1:]+x[0])
+def main():
+    gaot = Gaot()
+    gaot.run(gaot.get_code())
 
-gaot = Gaot()
-
-gaot.run(gaot.get_code())
+if __name__ == "__main__":
+    main()
