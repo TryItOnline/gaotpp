@@ -119,8 +119,8 @@ class Gaot(object):
 	def _swap(self):
 		x,y = self.stack.pop(), self.stack.pop()
 
-		self.stack.push(y)
 		self.stack.push(x)
+		self.stack.push(y)
 
 	def _reverse_stack(self):
 		self.stack = Stack(self.stack.get()[::-1])
