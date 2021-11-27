@@ -2,6 +2,7 @@
 # coding=utf-8
 
 # Last modified: <2012-05-10 18:04:45 Thursday by richard>
+# 2021-11-26 by Anthony Kozar: Only use termios if stdin is a tty.
 
 # @version 0.1
 # @author : Richard Wong
@@ -30,13 +31,19 @@ class _GetchUnix:
 
     def __call__(self):
         import sys, tty, termios
-        fd = sys.stdin.fileno()
-        old_settings = termios.tcgetattr(fd)
-        try:
-            tty.setraw(sys.stdin.fileno())
+        if sys.stdin.isatty():
+            fd = sys.stdin.fileno()
+            old_settings = termios.tcgetattr(fd)
+            try:
+                tty.setraw(sys.stdin.fileno())
+                ch = sys.stdin.read(1)
+            finally:
+                termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+                return ch
+        else:
             ch = sys.stdin.read(1)
-        finally:
-            termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+            if ch == '':
+                ch = '\x04' # EOF
             return ch
 
 
