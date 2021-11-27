@@ -110,8 +110,17 @@ class Gaot(object):
 		self.stack.push(float(raw_input()))
 
 	def _getchar(self):
-		_ = ord(getch())
-		self.stack.append(_*(_!=4))
+		# check if stdin is connected to a terminal
+		if sys.stdin.isatty():
+			_ = ord(getch())
+			self.stack.append(_*(_!=4))
+		else:
+			# getch() doesn't work with non-terminals
+			ch = sys.stdin.read(1)
+			if ch == '':
+				self.stack.append(0)
+			else:
+				self.stack.append(ord(ch))
 
 	def _dupe(self):
 		self.stack.push(self.stack.peek())
