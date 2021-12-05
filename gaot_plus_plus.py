@@ -39,7 +39,7 @@ class Gaot(object):
 
 	def run(self, program):
 		self.instructions = program.split()
-		while self.ipointer < len(self.instructions):
+		while self.ipointer < len(self.instructions) and self.ipointer >= 0:
 			c = self.instructions[self.ipointer]
 
 			if self.BAA.search(c): # is a "baa" command
