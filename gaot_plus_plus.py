@@ -135,8 +135,10 @@ class Gaot(object):
 		self.stack = Stack(self.stack.get()[::-1])
 
 	def _rotate_stack(self):
-		_ = self.stack.get()
-		self.stack = Stack(x[1:]+x[0])
+		x = self.stack[0]
+		self.stack = Stack(self.stack[1:])
+		self.stack.push(x)
+
 def main():
     gaot = Gaot()
     gaot.run(gaot.get_code())
