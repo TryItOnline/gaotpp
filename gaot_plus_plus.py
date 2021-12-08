@@ -39,7 +39,7 @@ class Gaot(object):
 
 	def run(self, program):
 		self.instructions = program.split()
-		while self.ipointer < len(self.instructions):
+		while self.ipointer < len(self.instructions) and self.ipointer >= 0:
 			c = self.instructions[self.ipointer]
 
 			if self.BAA.search(c): # is a "baa" command
@@ -110,8 +110,17 @@ class Gaot(object):
 		self.stack.push(float(raw_input()))
 
 	def _getchar(self):
-		_ = ord(getch())
-		self.stack.append(_*(_!=4))
+		# check if stdin is connected to a terminal
+		if sys.stdin.isatty():
+			_ = ord(getch())
+			self.stack.append(_*(_!=4))
+		else:
+			# getch() doesn't work with non-terminals
+			ch = sys.stdin.read(1)
+			if ch == '':
+				self.stack.append(0)
+			else:
+				self.stack.append(ord(ch))
 
 	def _dupe(self):
 		self.stack.push(self.stack.peek())
@@ -119,15 +128,18 @@ class Gaot(object):
 	def _swap(self):
 		x,y = self.stack.pop(), self.stack.pop()
 
-		self.stack.push(y)
 		self.stack.push(x)
+		self.stack.push(y)
 
 	def _reverse_stack(self):
 		self.stack = Stack(self.stack.get()[::-1])
 
 	def _rotate_stack(self):
-		_ = self.stack.get()
-		self.stack = Stack(x[1:]+x[0])
+		if len(self.stack) > 1:
+			x = self.stack[0]
+			self.stack = Stack(self.stack[1:])
+			self.stack.push(x)
+
 def main():
     gaot = Gaot()
     gaot.run(gaot.get_code())
